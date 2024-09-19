@@ -1,15 +1,22 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import {Link} from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+      <SafeAreaView style={styles.container}>
+        <Text>Acceuil </Text>
+        <Link href="/about"> a propos</Link>
+      </SafeAreaView>
   );
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'orange', flex: 1/6,
+    margin:10, marginTop:40,
+    borderRadius:20
+  }
+})

@@ -1,60 +1,40 @@
 import { Text, type TextProps, StyleSheet } from 'react-native';
 
-import { useThemeColor } from '@/hooks/useThemeColor';
-
-export type ThemedTextProps = TextProps & {
-  lightColor?: string;
-  darkColor?: string;
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
+export type Props = TextProps & {
+variant?: string,
+color?:string
 };
 
-export function ThemedText({
-  style,
-  lightColor,
-  darkColor,
-  type = 'default',
-  ...rest
-}: ThemedTextProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
-
-  return (
-    <Text
-      style={[
-        { color },
-        type === 'default' ? styles.default : undefined,
-        type === 'title' ? styles.title : undefined,
-        type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
-        type === 'subtitle' ? styles.subtitle : undefined,
-        type === 'link' ? styles.link : undefined,
-        style,
-      ]}
-      {...rest}
-    />
-  );
+export function ThemedText({variant, color,...rest}:Props) {
+  return <Text {...rest}/>
 }
 
 const styles = StyleSheet.create({
-  default: {
-    fontSize: 16,
-    lineHeight: 24,
+  container: {
+    flex: 1,
+    backgroundColor: '#f9f9f9',
+    padding: 20,
   },
-  defaultSemiBold: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: '600',
-  },
-  title: {
-    fontSize: 32,
+  mainTitle: {
+    fontSize: 30, // Grande taille pour le titre principal
     fontWeight: 'bold',
-    lineHeight: 32,
+    color: '#333', // Couleur sombre pour un bon contraste
+    marginBottom: 10,
   },
-  subtitle: {
+  subTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    color: '#666', // Couleur légèrement plus douce pour les sous-titres
+    marginBottom: 20,
   },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: '#0a7ea4',
+  normalText: {
+    fontSize: 16, // Texte normal lisible
+    color: '#444',
+    lineHeight: 24, // Espacement des lignes pour la lisibilité
+  },
+  boldText: {
+    fontSize: 18,
+    fontWeight: 'bold', // Mettre en gras pour attirer l'attention
+    color: '#d9534f', // Couleur vive pour attirer l'attention
+    marginTop: 10,
   },
 });

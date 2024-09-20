@@ -2,12 +2,17 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import {Link} from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import SearchBar from "@/components/searcheBar";
+
 
 export default function Index() {
   return (
       <SafeAreaView style={styles.container}>
+
         <Text>Acceuil </Text>
-        <Link href="/about"> a propos</Link>
+        <SearchBar>
+          
+        </SearchBar>
       </SafeAreaView>
   );
 }
@@ -15,8 +20,6 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'orange', flex: 1/6,
-    margin:10, marginTop:40,
-    borderRadius:20
+    backgroundColor: 'orange', flex: 1/5,
   }
 })

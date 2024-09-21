@@ -2,7 +2,6 @@ import { Text, View, TextInput, StyleSheet } from 'react-native'
 import React, { Component, useState } from 'react'
 
 // components/SearchBar.js
-
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
 
@@ -21,7 +20,8 @@ const SearchBar = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 30,
+    paddingTop: 100,
   },
   searchBar: {
     height: 40,

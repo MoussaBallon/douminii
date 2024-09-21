@@ -2,7 +2,6 @@ import { Text, View, TextInput, StyleSheet, Image } from 'react-native'
 import React, { Component, useState } from 'react'
 
 // components/SearchBar.js
-
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
 

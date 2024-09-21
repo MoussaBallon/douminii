@@ -10,9 +10,8 @@ export default function Index() {
       <SafeAreaView style={styles.container}>
 
         <Text>Acceuil </Text>
-        <SearchBar>
+        <SearchBar/>
           
-        </SearchBar>
       </SafeAreaView>
   );
 }

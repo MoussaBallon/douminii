@@ -11,6 +11,8 @@ class HomeScreen extends Component {
     }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    
+})
 
 export default HomeScreen;

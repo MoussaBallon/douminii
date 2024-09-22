@@ -1,14 +1,4 @@
 import { Text, type TextProps, StyleSheet } from 'react-native';
-
-export type Props = TextProps & {
-variant?: string,
-color?:string
-};
-
-export function ThemedText({variant, color,...rest}:Props) {
-  return <Text {...rest}/>
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -32,9 +22,18 @@ const styles = StyleSheet.create({
     lineHeight: 24, // Espacement des lignes pour la lisibilité
   },
   boldText: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: 'bold', // Mettre en gras pour attirer l'attention
-    color: '#d9534f', // Couleur vive pour attirer l'attention
-    marginTop: 10,
+    color: '#fff', // Couleur vive pour attirer l'attention
+    // marginTop: 10,
   },
 });
+export type Props = TextProps & {
+variant?: keyof typeof styles,
+color?:string
+};
+
+export function ThemedText({variant, color,...rest}:Props) {
+  return <Text style={styles[variant ?? 'boldText']} {...rest}/>
+}
+

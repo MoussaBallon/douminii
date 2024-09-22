@@ -18,28 +18,30 @@ export default function App() {
           tabBarIcon: ({ color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
-              iconName = 'home';
+            if (route.name === 'Acceuil') {
+              // iconName = 'home';
+              iconName = 'roofing';
             } else if (route.name === 'Search') {
               iconName = 'search';
             } else if (route.name === 'Panier') {
               iconName = 'shopping-basket';
-            } else if (route.name === 'Account') {
+              size = 45;
+            } else if (route.name === 'Compte') {
               iconName = 'account-circle';
-            } else if (route.name === 'Orders') {
+            } else if (route.name === 'Commandes') {
               iconName = 'receipt-long';
             }
 
             return <MaterialIcons name={iconName || 'home'} size={30} color={color} />;
-
           },
+          headerShown: false  // Cache l'en-tête sur tous les écrans
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Acceuil" component={HomeScreen}  />
         <Tab.Screen name="Search" component={SearchScreen} />
         <Tab.Screen name='Panier' component={Panier}/>
-        <Tab.Screen name="Orders" component={OrdersScreen} />
-        <Tab.Screen name="Account" component={AccountScreen} />
+        <Tab.Screen name="Commandes" component={OrdersScreen} />
+        <Tab.Screen name="Compte" component={AccountScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

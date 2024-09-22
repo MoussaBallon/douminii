@@ -1,21 +1,49 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View , ActivityIndicator} from "react-native";
 import React from "react";
 import {Link} from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchBar from "@/components/searcheBar";
 import { ThemedText } from "@/components/ThemedText";
+import { useEffect, useState } from 'react';
+import API from '../api'; // Assurez-vous que le chemin est correct
 
+interface UserData {
+  nom: string;
+  email?: string; // Utilisez '?' pour les champs qui peuvent être absents
+}
 
-export default function Index() {
+export default function HomeScreen() {
+  const [user, setUser] = useState<UserData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const fetchData = async () => {
+    try {
+      const response = await API.get('/utilisateur/3', {
+        headers: {
+          Authorization: 'Bearer YOUR_TOKEN_HERE', // Assurez-vous d'inclure le token approprié
+        }
+      });
+      setUser(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données:', error);
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
-      <SafeAreaView style={styles.container}>
-
-      <View style={styles.text}>
-        <ThemedText variant="boldText">Bienvenue, Abdoul </ThemedText>
+    <SafeAreaView style={styles.container} >
+      {loading ? (
+        <ActivityIndicator size="large" color="#0000ff" /> // Indicateur de chargement pendant la récupération des données
+      ) : (
+        <View style={styles.text}>
+          <Text style={styles.text}>{user ? user.nom : 'Utilisateur'}</Text>
         </View>
-        
-          
-      </SafeAreaView>
+      )}
+    </SafeAreaView>
   );
 }
 
@@ -24,7 +52,10 @@ const styles = StyleSheet.create({
   container: {
     opacity:10,
     backgroundColor: '#2E8B57', flex: 1/5,
-    borderRadius:15
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   text:{
     position:'relative',

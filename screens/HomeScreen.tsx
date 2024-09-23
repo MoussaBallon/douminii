@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { StyleSheet, Image, Text, View, ActivityIndicator } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useState } from 'react';
 import axios from "axios";
+
 
 interface UserData {
   nom: string;
@@ -32,7 +33,12 @@ export default function HomeScreen() {
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <View style={styles.textContainer}>
-          <Text style={styles.text}>{user ? user.prenom : 'Utilisateur inconnu'}</Text>
+          <Text style={styles.text}>Bienvenu, {user ? user.prenom : 'Utilisateur inconnu'}
+            <Image
+                      source={require('../assets/icons/settings.png')} // Chemin de l'image
+                      style={styles.image}
+                      />
+          </Text>
         </View>
       )}
     </SafeAreaView>
@@ -49,13 +55,22 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 15,
   },
   textContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex:1,
+    position:'absolute',
+    left:50,
+    gap: 100,
   },
   text: {
-    fontSize: 50,
+    // lineHeight:24,
+    fontSize: 24,
+    // fontFamily: 'SofadiOne-Regular',
     fontWeight: 'bold',
-    color: '#2c3e50',
+    color: '#fff',
     textTransform: 'capitalize',
+  },
+  image:{
+    width: 50,
+    height: 50, // Taille de l'image
+    // resizeMode: 'contain', // Pour ajuster l'image
   }
 });

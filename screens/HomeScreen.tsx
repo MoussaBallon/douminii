@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 15,
   },
   textContainer: {
+    marginEnd:30,
     flex:1,
     position:'absolute',
     left:50,
